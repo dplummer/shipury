@@ -18,7 +18,7 @@ module Shipury
         def download_tables(output_io = StringIO.new, start_zip = 10, finish_zip = 999)
           require 'open-uri'
 
-          #from_continental_us(output_io, start_zip, finish_zip)
+          from_continental_us(output_io, start_zip, finish_zip)
 
           if start_zip * 100 <= HAWAII_SOURCE_GTE && (finish_zip + 1) * 100 > HAWAII_SOURCE_LTE
             delete_all_for_source(HAWAII_SOURCE_GTE, HAWAII_SOURCE_LTE)
