@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Content-Length: 270
+Content-Type: application/octet-stream
+Last-Modified: Fri, 31 Dec 2010 22:28:46 GMT
+Accept-Ranges: bytes
+ETag: "0a372163aa9cb1:3617"
+Server: Microsoft-IIS/6.0
+Date: Sat, 28 May 2011 06:45:07 GMT
+Connection: keep-alive
+
+Priority Mail - Critical Mail,,,,,,,
+
+,Zone,,,,,,
+,"L, 1 & 2",3,4,5,6,7,8
+Critical Mail - Letter,3.5,3.5,3.5,3.5,3.5,3.5,3.5
+Critical Mail - Flat,4.25,4.25,4.25,4.25,4.25,4.25,4.25
+
+Maximum weight - Letter,3.0 ounces,,,,,,
+Maximum weight - Flat,13 ounces,,,,,,

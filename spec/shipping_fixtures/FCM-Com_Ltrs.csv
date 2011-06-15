@@ -1,0 +1,26 @@
+HTTP/1.1 200 OK
+Server: Netscape-Enterprise/6.0
+Cteonnt-length: 511
+Content-Type: text/csv
+ETag: "fc30b855-df-0-1ff"
+Last-Modified: Wed, 30 Mar 2011 20:29:04 GMT
+Date: Sat, 28 May 2011 06:46:13 GMT
+Content-Length: 511
+Connection: keep-alive
+
+First-Class Mail - Commercial - Letters ,,,,,,
+,,,,,,
+,Automation,,,,Machinable,Nonmachinable
+Weight Not Over (ounces),5-Digit,3-Digit,AADC,Mixed AADC,Presorted,Presorted
+1,0.34,0.365,0.368,0.39,0.414,0.614
+2,0.465,0.49,0.493,0.515,0.539,0.739
+3,0.59,0.615,0.618,0.64,0.664,0.864
+3.5,0.715,0.74,0.743,0.765,0.789,0.989
+,,,,,,
+Postcard,0.208,0.222,0.223,0.235,0.26,n/a
+,,,,,,
+Additional Ounce,,,0.125,,,
+,,,,,,
+Repositionable Notes (RPNs),,,0.005,,,
+,,,,,,
+Full Service IMb Incentive,,,-0.003,,,

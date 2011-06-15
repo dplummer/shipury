@@ -1,0 +1,11 @@
+h1. Shipury
+
+Shipury (Shipment + Mercury) is a Rails 2.3 plugin to provide shipping rates for
+USPS, Fedex and UPS from locally stored rate tables. This provides a significant
+speed increase for providing shipping quotes over the APIs.
+
+Due to complexity for International rates, Shipury has a fallback to the API for
+international rates at this time. Future support for international is planned.
+
+
+Copyright (c) 2011 Donald Plummer, released under the MIT license

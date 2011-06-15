@@ -1,0 +1,32 @@
+HTTP/1.1 200 OK
+Server: Netscape-Enterprise/6.0
+Cteonnt-length: 600
+Content-Type: text/csv
+ETag: "2c0da9f3-a7-0-258"
+Last-Modified: Wed, 30 Mar 2011 20:29:05 GMT
+Date: Sat, 28 May 2011 06:46:02 GMT
+Content-Length: 600
+Connection: keep-alive
+
+First-Class Mail - Retail,,,,,,,
+,,,,,,,
+LETTERS,,,FLATS,,,PARCELS,
+Weight Not Over (ounces),,,Weight Not Over (ounces),,,Weight Not Over (ounces),
+1,0.44,,1,0.88,,1,1.71
+2,0.64,,2,1.08,,2,1.71
+3,0.84,,3,1.28,,3,1.71
+3.5,1.04,,4,1.48,,4,1.88
+,,,5,1.68,,5,2.05
+Postcard,0.29,,6,1.88,,6,2.22
+,,,7,2.08,,7,2.39
+,,,8,2.28,,8,2.56
+,,,9,2.48,,9,2.73
+,,,10,2.68,,10,2.9
+,,,11,2.88,,11,3.07
+,,,12,3.08,,12,3.24
+,,,13,3.28,,13,3.41
+,,,,,,,
+,,,,,,,
+Additional Ounce (Letters and Flats),,,,0.2,,,
+Additional Ounce Rate (Parcels),,,,0.17,,,
+Nonmachinable Surcharge (Letters only),,,,0.2,,,

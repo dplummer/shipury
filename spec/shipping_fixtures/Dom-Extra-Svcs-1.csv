@@ -1,0 +1,123 @@
+HTTP/1.1 200 OK
+Server: Netscape-Enterprise/6.0
+Cteonnt-length: 2587
+Content-Type: text/csv
+ETag: "7d2efe8a-f5c-0-a1b"
+Last-Modified: Wed, 30 Mar 2011 20:29:02 GMT
+Date: Sat, 28 May 2011 06:49:48 GMT
+Content-Length: 2587
+Connection: keep-alive
+
+Extra Services & Other Fees (1),,
+,,
+Accounting Fee (per year),,605
+,,
+Address Correction Service,,
+,Manual,0.5
+,,
+,One Code (letters only),
+,  First Class Mail,
+,"    First 2 Notices, each",0.02
+,    Additional Notices,0.09
+,  Standard Mail,
+,"    First 2 Notices, each",0.05
+,    Additional Notices,0.21
+,,
+,Electronic,
+,  First Class Mail,0.1
+,  Other,0.27
+,,
+,Full Service,0
+,,
+Address Sequencing Service,,0.36
+,,
+Bulk Parcel Return Service,,
+,Permit fee (per year),190
+,Accounting fee (per year),605
+,For each piece returned,2.55
+,,
+Business Reply Mail,,
+,"Regular, basic",
+,Permit fee (per year),190
+,Per piece charge,0.75
+,"Regular, high-volume",
+,Permit fee (per year),190
+,Accounting fee (per year),605
+,"Per piece charge, Non-QBRM",0.085
+,"Qualified Business Reply Mail, low-volume",
+,Permit fee (per year),190
+,Accounting fee (per year),605
+,"Per piece charge, basic",0.055
+,"Qualified Business Reply Mail, high-volume",
+,Permit fee (per year),190
+,Accounting fee (per year),605
+,Quarterly fee,1980
+,"Per piece charge, high-volume",0.007
+,Bulk Weight Averaged,
+,Permit fee (per year),190
+,Accounting fee (per year),605
+,"Per piece charge, bulk weight averaged",0.014
+,Monthly maintenance fee,985
+,,
+QBRM Letters,Weight Not Over (ounces),
+,1,0.417
+,2,0.617
+,,
+QBRM Postcards,,0.267
+,,
+Caller Service,,
+,For semiannual period,
+,Group 1,690
+,Group 2,605
+,Group 3,545
+,Group 4,535
+,Group 5,525
+,Group 6,470
+,Group 7,430
+,"Reserved call number, per year",42
+,,
+Certified Mail,,2.85
+,,
+Collect on Delivery,,
+,Amount to be collected,
+,$0.01 to 50.00 ,5.75
+,50.01 to 100.00 ,7.1
+,100.01 to 200.00 ,8.45
+,200.01 to 300.00 ,9.8
+,300.01 to 400.00 ,11.15
+,400.01 to 500.00 ,12.5
+,500.01 to 600.00 ,13.85
+,600.01 to 700.00 ,15.2
+,700.01 to 800.00 ,16.55
+,800.01 to 900.00 ,17.9
+,"900.01 to 1,000.00 ",19.25
+,Notice of nondelivery ,3.9
+,Alteration of COD charges ,3.9
+,Designation of new addressee,3.9
+,Registered COD,5
+,,
+Confirm,,
+,Additional IDs,
+,Quarter,900
+,Annual,2500
+,Subscriptions,
+,Bronze,1025
+,Silver,2050
+,Gold,7750
+,Platinum,26000
+,Additional Scans,
+,Bronze,250
+,Silver,500
+,Gold,800
+,,
+Customized Postage,,
+,Annual Participation Fee (up to two printing facilities),300000
+,"Additional Printing Sites (3-50 sites, each site)",50000
+,Over 50 Printing Sites (each site),5000
+,,
+Express Mail Insurance,,
+,Amount of coverage,
+,$0.01 to100.00,0
+,100.01 to 200.00,0.8
+,200.01 to 500.00,2.2
+,"500.01 to 5,000.00",2.20 plus 1.45 for each 500 or fraction thereof over 500

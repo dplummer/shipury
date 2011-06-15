@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Server: Netscape-Enterprise/6.0
+Cteonnt-length: 655
+Content-Type: text/csv
+ETag: "f7e2649-e1-0-28f"
+Last-Modified: Wed, 30 Mar 2011 20:29:03 GMT
+Date: Sat, 28 May 2011 06:46:24 GMT
+Content-Length: 655
+Connection: keep-alive
+
+First-Class Mail - Commercial - Flats,,,,,
+,,,,,
+,Automation,,,,Nonauto
+Weight Not Over (Ounces),5-Digit,3-Digit,ADC,Mixed ADC,Presorted
+1,0.373,0.547,0.605,0.725,0.757
+2,0.543,0.717,0.775,0.895,0.927
+3,0.713,0.887,0.945,1.065,1.097
+4,0.883,1.057,1.115,1.235,1.267
+5,1.053,1.227,1.285,1.405,1.437
+6,1.223,1.397,1.455,1.575,1.607
+7,1.393,1.567,1.625,1.745,1.777
+8,1.563,1.737,1.795,1.915,1.947
+9,1.733,1.907,1.965,2.085,2.117
+10,1.903,2.077,2.135,2.255,2.287
+11,2.073,2.247,2.305,2.425,2.457
+12,2.243,2.417,2.475,2.595,2.627
+13,2.413,2.587,2.645,2.765,2.797
+,,,,,
+Additional Ounce ,,,0.17,,
+,,,,,
+Full Service IMb Incentive,,,-0.003,,

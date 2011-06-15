@@ -1,0 +1,8 @@
+Description:
+    Generates the Shipury migration
+
+Example:
+    ./script/generate shipury
+
+    This will create:
+        db/migrate/*_create_shipury_tables.rb

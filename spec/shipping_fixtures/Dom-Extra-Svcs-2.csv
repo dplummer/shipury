@@ -1,0 +1,139 @@
+HTTP/1.1 200 OK
+Server: Netscape-Enterprise/6.0
+Cteonnt-length: 3148
+Content-Type: text/csv
+ETag: "7d41170b-f4-0-c4c"
+Last-Modified: Wed, 30 Mar 2011 20:29:03 GMT
+Date: Sat, 28 May 2011 06:49:59 GMT
+Content-Length: 3148
+Connection: keep-alive
+
+Extra Services & Other Fees (2),,
+,,
+Insurance,,
+,"Regular, amount of coverage",
+,$ 0.01 to $ 50.00,1.8
+,50.01 to 100.00,2.3
+,100.01 to 200.00,2.85
+,200.01 to 300.00,4.75
+,"300.01 to 5,000.00",4.75 plus 1.05 for each 100 or fraction thereof over 300
+,,
+,Bulk Insurance (discount off regular prices),-0.8
+,,
+Mailing List Services,,
+,List correction,
+,For each address on list,0.36
+,Address changes for election boards,
+,For each address,0.36
+,,
+Merchandise Return Service,,
+,Permit fee (per year),190
+,Accounting fee (per year),605
+,Per piece returned,0
+,,
+Money Orders,,
+,Domestic ($0.01 - $500.00 ),1.1
+,Domestic ($500.01 - $1000.00),1.55
+,Military,0.3
+,Inquiry,5.4
+,,
+Parcel Airlift Service,,
+,Not more than 2 pounds ,0.55
+,Over 2 but not more than 3 pounds ,1.15
+,Over 3 but not more than 4 pounds ,1.6
+,Over 4 but not more than 30 pounds ,2.2
+,,
+Permit Imprint Application Fee,,190
+,,
+Permit Fee (per year),,190
+,,
+Pickup Service,,15.3
+,,
+Post Office Box Service,,
+,Semi-annual Fees,
+,Group 1 - Size 1,48
+,Group 1 - Size 2,70
+,Group 1 - Size 3,125
+,Group 1 - Size 4,255
+,Group 1 - Size 5,410
+,,
+,Group 2 - Size 1,38
+,Group 2 - Size 2,58
+,Group 2 - Size 3,100
+,Group 2 - Size 4,195
+,Group 2 - Size 5,350
+,,
+,Group 3 - Size 1,31
+,Group 3 - Size 2,48
+,Group 3 - Size 3,88
+,Group 3 - Size 4,160
+,Group 3 - Size 5,270
+,,
+,Group 4 - Size 1,23
+,Group 4 - Size 2,35
+,Group 4 - Size 3,55
+,Group 4 - Size 4,110
+,Group 4 - Size 5,205
+,,
+,Group 5 - Size 1,21
+,Group 5 - Size 2,28
+,Group 5 - Size 3,50
+,Group 5 - Size 4,90
+,Group 5 - Size 5,155
+,,
+,Group 6 - Size 1,15
+,Group 6 - Size 2,22
+,Group 6 - Size 3,38
+,Group 6 - Size 4,65
+,Group 6 - Size 5,115
+,,
+,Group 7 - Size 1,13
+,Group 7 - Size 2,18
+,Group 7 - Size 3,30
+,Group 7 - Size 4,50
+,Group 7 - Size 5,90
+,,
+,Group E - Sizes 1 - 5,0
+,,
+,Key Duplication or Replacement Fee,6
+,Customer Initiated Lock Change,15
+,Key Deposit,3
+,,
+Registered Mail,,
+,"Without insurance, declared value $0.00",10.75
+,"With insurance, declared value",
+,$0.01 to 100.00 ,11.5
+,100.01 to 500.00 ,13.25
+,"500.01 to 1,000.00 ",14.65
+,"1,000.01 to 25,000.00","14.65 plus 1.40 handling charge for each 1,000 or fraction thereof over 1,000.00"
+,"25,000.01 to 1,000,000.00","48.25 plus 1.40 handling charge for each 1,000 or fraction thereof over 25,000.00"
+,"1,000,000.01 to 15,000,000.00","1,413.25 plus 1.40 handling charge for each 1,000 or fraction thereof over 1,000,000.00"
+,"15,000,000.00+","21,013.25 plus amount determined by the Postal Service based on weight, space, and value"
+,,
+Restricted Delivery,,4.5
+,,
+Return Receipt,,
+,Requested at time of mailing,2.3
+,Requested after mailing,4.7
+,Electronic ,1.15
+,,
+Return Receipt for Merchandise,,
+,Requested at time of mailing,3.85
+,,
+Shipper Paid Forwarding,,
+,Accounting fee (per year),605
+,,
+Signature Confirmation,,
+,First-Class Mail,
+,Electronic,2.05
+,Retail ,2.45
+,Priority Mail ,
+,Electronic ,2.05
+,Retail ,2.45
+,Package Services ,
+,Electronic ,2.05
+,Retail ,2.45
+,,
+Special Handling,,
+,Not more than 10 pounds,7.55
+,Over 10 pounds,10.6

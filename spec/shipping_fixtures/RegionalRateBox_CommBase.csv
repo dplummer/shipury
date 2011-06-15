@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Content-Length: 211
+Content-Type: application/octet-stream
+Last-Modified: Fri, 31 Dec 2010 22:28:52 GMT
+Accept-Ranges: bytes
+ETag: "02a61a3aa9cb1:736"
+Server: Microsoft-IIS/6.0
+Date: Sat, 28 May 2011 06:44:45 GMT
+Connection: keep-alive
+
+Priority Mail - Regional Rate Boxes - Com Base,,,,,,,
+
+,Zones,,,,,,
+Boxes,"L, 1 & 2",Zone 3,Zone 4,Zone 5,Zone 6,Zone 7,Zone 8
+A,4.97,5.08,5.58,7.15,7.83,8.36,9.37
+B,5.81,6.88,8.06,10.51,12.29,13.12,14.62

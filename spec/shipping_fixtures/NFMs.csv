@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Server: Netscape-Enterprise/6.0
+Cteonnt-length: 439
+Content-Type: text/csv
+ETag: "9e541b03-5e3-0-1b7"
+Last-Modified: Wed, 30 Mar 2011 20:29:07 GMT
+Date: Sat, 28 May 2011 06:49:38 GMT
+Content-Length: 439
+Connection: keep-alive
+
+Standard Mail - Not Flat-Machinables,,,,
+Pg 16,,,,
+,,,,
+3.3 ounces or less,,,,
+Entry Point,5-Digit,SCF,NDC,Mixed NDC
+None,-,-,1.045,1.46
+DNDC,0.606,0.63,1.002,-
+DSCF,0.557,0.581,-,-
+DDU,0.521,-,-,-
+,,,,
+,,,,
+More than 3.3 ounces,,,,
+Entry Point,5-Digit,SCF,NDC,Mixed NDC
+None,-,-,1,1
+DNDC,0.792,0.792,0.792,-
+DSCF,0.555,0.555,-,-
+DDU,0.379,-,-,-
+Per Pc,0.443,0.467,0.839,1.254
+,,,,
+,,,,
+Nonbarcoded Surcharge,,,0.064,

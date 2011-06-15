@@ -1,0 +1,28 @@
+HTTP/1.1 200 OK
+Server: Netscape-Enterprise/6.0
+Cteonnt-length: 484
+Content-Type: text/csv
+ETag: "b4c32414-c7-0-1e4"
+Last-Modified: Thu, 14 Apr 2011 15:00:00 GMT
+Date: Sat, 28 May 2011 06:46:35 GMT
+Content-Length: 484
+Connection: keep-alive
+
+First-Class Mail - Commercial Base - Parcels,,,,
+,,,,
+Weight Not Over (Ounces),5-Digit,3-Digit,ADC,Single-Piece 
+1,1.122,1.254,1.34,1.56
+2,1.122,1.254,1.34,1.56
+3,1.122,1.254,1.34,1.56
+4,1.292,1.424,1.51,1.73
+5,1.462,1.594,1.68,1.90
+6,1.632,1.764,1.85,2.07
+7,1.802,1.934,2.02,2.24
+8,1.972,2.104,2.19,2.41
+9,2.142,2.274,2.36,2.58
+10,2.312,2.444,2.53,2.75
+11,2.482,2.614,2.70,2.92
+12,2.652,2.784,2.87,3.09
+13,2.822,2.954,3.04,3.26
+,,,,
+Nonmachinable Surcharge,,,0.05,
