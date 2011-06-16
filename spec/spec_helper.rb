@@ -6,9 +6,7 @@ ENV['RAILS_ENV'] = 'test'
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 
-require 'spec'
-require 'webmock'
-require 'webmock/rspec'
+Bundle.require(:test)
 
 require 'logger'
 ActiveRecord::Base.logger = Logger.new('/tmp/shipury.log')
