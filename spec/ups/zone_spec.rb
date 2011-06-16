@@ -14,6 +14,7 @@ module Shipury
         context "hawaii source" do
           before(:each) do
             stub_request(:get, "http://www.ups.com/media/us/currentrates/zone-csv/967.xls")
+            stub_request(:get, "http://www.ups.com/media/us/currentrates/zone-csv/968.xls")
             stub_request(:get, "http://www.ups.com/media/en/hiz_hi.csv")
             stub_request(:get, "http://www.ups.com/media/en/hiz_ak.csv")
             stub_request(:get, "http://www.ups.com/media/en/hiz_48pr.csv").

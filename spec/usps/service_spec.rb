@@ -77,7 +77,10 @@ CSV_CONTENT
         }}
 
         context "USPS Media Mail Retail service" do
-          subject { Service.new(:name => "Media Mail Retail") }
+          let(:carrier) { Carrier.new(:name => 'USPS') }
+          subject { Service.new(:name          => "Media Mail Retail",
+                                :weight_priced => true,
+                                :carrier       => carrier) }
           before(:each) do
             subject.rates.build(:weight_in_lbs => 1,
                                 :price         => 2.41)

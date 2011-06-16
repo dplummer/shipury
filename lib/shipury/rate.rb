@@ -11,5 +11,9 @@ module Shipury
     named_scope :by_zone, lambda { |zone|
       zone ? {:conditions => ["zone = ?", zone.to_i]} : {}
     }
+
+    named_scope :by_service, lambda { |service|
+      {:conditions => {:service_id => service.id}}
+    }
   end
 end

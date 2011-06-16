@@ -10,4 +10,7 @@ require 'spec'
 require 'webmock'
 require 'webmock/rspec'
 
+require 'logger'
+ActiveRecord::Base.logger = Logger.new('/tmp/shipury.log')
+
 require 'shipury'

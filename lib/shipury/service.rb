@@ -4,6 +4,8 @@ module Shipury
 
     belongs_to :carrier, :class_name => 'Shipury::Carrier'
 
+    has_many :rates
+
     CARRIERS = %(USPS UPS Fedex)
 
     named_scope :for_select, {
@@ -20,9 +22,10 @@ module Shipury
     end
 
     def quote(shipping_options)
-      rates.by_weight(weight_priced? ? shipping_options[:weight] : nil).
-            by_zone(zone_priced? ? zone_lookup(shipping_options) : nil).
-            first(:order => 'price ASC').try(:price)
+      Rate.by_weight(weight_priced? ? shipping_options[:weight] : nil).
+           by_zone(zone_priced? ? zone_lookup(shipping_options) : nil).
+           by_service(self).
+           first(:order => 'price ASC').try(:price)
     end
 
     def update_weight_zone_rate_price(weight, zone, price)
