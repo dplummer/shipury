@@ -1,4 +1,3 @@
-require 'mechanize'
 
 module Shipury
   module USPS
@@ -40,6 +39,8 @@ module Shipury
       end
 
       def download_pricing(output_io = StringIO.new)
+        require 'mechanize'
+
         # Get a list of services -> file names
         domestic_service_names.each do |name|
           output_io.puts "Fetching #{name}"

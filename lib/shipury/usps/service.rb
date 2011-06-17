@@ -1,5 +1,3 @@
-require 'fastercsv'
-
 module Shipury
   module USPS
     class Service < Shipury::Service
@@ -18,6 +16,7 @@ module Shipury
                     "Priority Mail APO Flat Rate Box"    => "APO/FPO/DPO Large FRB"}
 
       def parse_csv(csv_content)
+        require 'fastercsv'
         csv = FasterCSV.new(csv_content, :headers => true, :skip_blanks => true)
 
         csv.each do |row|

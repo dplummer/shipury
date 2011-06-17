@@ -1,5 +1,3 @@
-require 'net/ftp'
-
 module Shipury
   module Fedex
     class Service < Shipury::Service
@@ -22,6 +20,8 @@ module Shipury
       validates_inclusion_of :name, :in => RATE_TXT_FILES.keys
 
       def download_rates!
+        require 'net/ftp'
+
         rate_csv.each do |row|
           (row.headers.length - 1).times do |i|
             parse_cell(row, i + 1)
