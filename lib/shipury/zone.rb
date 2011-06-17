@@ -27,17 +27,41 @@ module Shipury
 
     named_scope :lookup_by_zip, lambda { |source, dest|
       {
-        :conditions => ["source_zip_gte <= ? AND source_zip_lte >= ? AND " \
-                        "destination_zip_gte <= ? AND destination_zip_lte >= ?",
-                        source, source, dest, dest],
-        :select => 'zone'
+        :conditions => ["(? BETWEEN source_zip_gte AND source_zip_lte) AND " \
+                        "(? BETWEEN destination_zip_gte AND destination_zip_lte)",
+                        source.to_i, dest.to_i],
+        :select => 'type, zone'
       }
     }
 
 
     class << self
       def zone_lookup(source_zip, destination_zip)
-        lookup_by_zip(source_zip, destination_zip).first.try(:zone)
+        Shipury::Zone.memoized_zone_lookup(name, source_zip, destination_zip)
+      end
+
+      protected
+      def memoized_zone_lookup(name, source_zip, destination_zip)
+        unless zone_memory(name, source_zip, destination_zip)
+          Shipury::Zone.lookup_by_zip(source_zip, destination_zip).each do |zone|
+            set_zone_memory(name, source_zip, destination_zip, zone.zone)
+          end
+        end
+
+        zone_memory(name, source_zip, destination_zip)
+      end
+
+      private
+      def zone_memory(name, source_zip, destination_zip = nil)
+        @zone_memory ||= {}
+        @zone_memory[name] ||= {}
+        @zone_memory[name][source_zip] ||= {}
+        @zone_memory[name][source_zip][destination_zip]
+      end
+
+      def set_zone_memory(name, source_zip, destination_zip, zone)
+        zone_memory(name, source_zip, destination_zip)
+        @zone_memory[name][source_zip][destination_zip] = zone
       end
 
       def delete_all_for_source(lower, upper)
