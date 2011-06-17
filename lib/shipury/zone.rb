@@ -1,5 +1,7 @@
 module Shipury
   class Zone < ActiveRecord::Base
+    self.store_full_sti_class = true
+
     set_table_name 'shipury_zones'
 
     validates_numericality_of :source_zip_gte,

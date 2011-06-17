@@ -1,5 +1,7 @@
 module Shipury
   class Service < ActiveRecord::Base
+    self.store_full_sti_class = true
+
     set_table_name 'shipury_services'
 
     belongs_to :carrier, :class_name => 'Shipury::Carrier'

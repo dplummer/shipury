@@ -1,7 +1,19 @@
 require 'spec_helper'
 
 module Shipury
+  module TestCarrier
+    class Service < Shipury::Service; end
+  end
+
   describe Service do
+    context "inherited class" do
+      subject { TestCarrier::Service.new }
+
+      it "has a correct type attribute" do
+        subject[:type].should == "Shipury::TestCarrier::Service"
+      end
+    end
+
     describe "#update_weight_zone_rate_price" do
       let(:rate)  { mock("Rate").as_null_object }
       let(:rates) { mock("Rates").as_null_object }

@@ -1,5 +1,7 @@
 module Shipury
   class Rate < ActiveRecord::Base
+    self.store_full_sti_class = true
+
     set_table_name 'shipury_rates'
 
     belongs_to :shipping_service
