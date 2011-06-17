@@ -13,7 +13,10 @@ end
 
 desc "Seed test data from carriers"
 task :seed_test do
-  FileUtils.rm('features/shipury_plugin.sqlite3.db')
+  if File.exists?('features/shipury_plugin.sqlite3.db')
+    FileUtils.rm('features/shipury_plugin.sqlite3.db')
+  end
+
   ActiveRecord::Base.configurations['root'] = {
     :adapter  => 'sqlite3',
     :database => 'features/shipury_plugin.sqlite3.db'
