@@ -16,7 +16,7 @@ module Shipury
     }
 
     def select_label
-      "#{carrier_name} #{name}"
+      "#{carrier_name} -- #{name}"
     end
 
     def carrier_name

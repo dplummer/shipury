@@ -21,6 +21,7 @@ module Shipury
 
       def download_rates!
         require 'net/ftp'
+        require 'fastercsv'
 
         rate_csv.each do |row|
           (row.headers.length - 1).times do |i|
