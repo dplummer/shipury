@@ -1,4 +1,3 @@
-@wip
 Feature:
   As a store
   I can get rates from carriers

@@ -44,7 +44,7 @@ module Shipury
       def memoized_zone_lookup(name, source_zip, destination_zip)
         unless zone_memory(name, source_zip, destination_zip)
           Shipury::Zone.lookup_by_zip(source_zip, destination_zip).each do |zone|
-            set_zone_memory(name, source_zip, destination_zip, zone.zone)
+            set_zone_memory(zone.class.name, source_zip, destination_zip, zone.zone)
           end
         end
 
