@@ -1,6 +1,8 @@
 module Shipury
 end
 
+require 'vendor/active_shipping/lib/active_shipping'
+
 require 'shipury/carrier'
 require 'shipury/service'
 require 'shipury/rate'

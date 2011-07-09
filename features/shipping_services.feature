@@ -3,28 +3,6 @@ Feature:
   I can get rates from carriers
   Through a local lookup table
 
-  #  Background:
-  #    Given UPS shipping rates are loaded
-  #      And Fedex shipping rates are loaded
-  #      And USPS shipping rates are loaded
-
-  Scenario Outline: Count of cached data
-    Then I have <count> of "<model>"
-
-    Examples:
-        | model                   | count  |
-        | Shipury::Carrier        | 3      |
-        | Shipury::USPS::Service  | 12     |
-        | Shipury::Fedex::Service | 6      |
-        | Shipury::UPS::Service   | 7      |
-        | Shipury::USPS::Rate     | 1774   |
-        | Shipury::Fedex::Rate    | 12300  |
-        | Shipury::UPS::Rate      | 9840   |
-        | Shipury::USPS::Zone     | 139137 |
-        | Shipury::Fedex::Zone    | 243740 |
-        | Shipury::UPS::Zone      | 633228 |
-
-
   Scenario Outline: From Seattle, WA to Lynnwood, WA
     Given I am shopping for a quote for the following shipping options:
         | country        | US      |
@@ -108,7 +86,8 @@ Feature:
       | UPS     | Next Day Air Early A.M.            | 106.95 |
 
   Scenario Outline: From Hawaii to California
-    Given I am shopping for a quote for the following shipping options:
+    Given I am accepting requests to UPS for a Hawaii origin
+      And I am shopping for a quote for the following shipping options:
         | country        | US       |
         | zip            | 90045    |
         | sender_zip     | 96817    |
@@ -140,10 +119,39 @@ Feature:
       | Fedex   | Overnight                          | 64.80 |
       | Fedex   | Priority Overnight                 | 39.80 |
       | Fedex   | Standard Overnight                 | 29.60 |
-      | UPS     | Ground                             | 8.35  |
+      | UPS     | Ground                             | 11.04 |
       | UPS     | Three-Day Select                   |       |
-      | UPS     | Second Day Air                     | 18.68 |
-      | UPS     | Second Day Air A.M.                | 23.90 |
-      | UPS     | Next Day Air Saver                 | 33.76 |
-      | UPS     | Next Day Air                       | 47.79 |
-      | UPS     | Next Day Air Early A.M.            | 83.75 |
+      | UPS     | Second Day Air                     | 21.58 |
+      | UPS     | Second Day Air A.M.                |       |
+      | UPS     | Next Day Air Saver                 | 36.47 |
+      | UPS     | Next Day Air                       | 50.32 |
+      | UPS     | Next Day Air Early A.M.            | 85.82 |
+
+  Scenario Outline: From California to Ontario, CA
+    Given I am shopping for a quote for the following shipping options:
+        | country        | CA       |
+        | zip            | M7A 2A1  |
+        | sender_zip     | 95112    |
+        | sender_city    | San Jose |
+        | sender_state   | CA       |
+        | sender_country | US       |
+        | weight         | 1.0      |
+        | line_items     | 1        |
+     When I shop for a rate from carrier "<carrier>" service "<service>"
+     Then the quoted price should be "<price>"
+
+    Examples:
+      | carrier | service                                          | price |
+      | USPS    | First-Class Mail International Package           | 5.58  |
+      | USPS    | Priority Mail International Small Flat Rate Box  | 11.95 |
+      | USPS    | Priority Mail International                      | 21.25 |
+      | USPS    | Priority Mail International Medium Flat Rate Box | 27.95 |
+      | USPS    | Express Mail International                       | 32.50 |
+      | USPS    | Priority Mail International Large Flat Rate Box  | 35.50 |
+      | Fedex   | Ground                                           | 14.34 |
+      | Fedex   | International Economy                            | 19.46 |
+      | Fedex   | International Priority                           | 19.80 |
+      | UPS     | Standard                                         | 17.52 |
+      | UPS     | Worldwide Expedited                              | 62.86 |
+      | UPS     | Saver                                            | 64.34 |
+      | UPS     | Express                                          | 66.87 |

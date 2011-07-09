@@ -1,3 +1,12 @@
+Given "I allow net connect" do
+  WebMock.allow_net_connect!
+end
+
+Given "I am accepting requests to UPS for a Hawaii origin" do
+ WebMock.stub_request(:post, "https://www.ups.com/ups.app/xml/Rate").
+   to_return(File.new('features/support/ups_hawaii_rates.txt'))
+end
+
 Given "USPS shipping rates are loaded" do
   unless $usps_rates_loaded == true
     base_dir = 'spec/shipping_fixtures'

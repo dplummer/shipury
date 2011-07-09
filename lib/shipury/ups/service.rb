@@ -60,13 +60,73 @@ module Shipury
       def zone_lookup(shipping_options)
         SERVICE_ZONES[name].zone_lookup(shipping_options[:sender_zip],
                                         shipping_options[:zip])
-        
       end
 
-      def quote(shipping_weight)
-        price = super
-        price = (price * SERVICE_FUEL_SURCHARGE[name]).round(2) unless price.nil?
-        price
+      def quote(shipping_options)
+        if shipping_options[:sender_state] == 'HI'
+          international_quote(shipping_options)
+        else
+          price = super
+          price = (price * SERVICE_FUEL_SURCHARGE[name]).round(2) unless price.nil?
+          price
+        end
+      end
+
+      def international_quote(shipping_options)
+        Shipury::UPS::Service.active_shipping_quote(name, shipping_options)
+      end
+
+      class << self
+        def active_shipping_quote(name, shipping_options)
+          @active_shipping ||= {}
+          o = origin(shipping_options)
+          d = destination(shipping_options)
+          p = package(shipping_options)
+          unless @active_shipping[[o,d,p]]
+            # TODO: Config file for logins
+            ups = ActiveMerchant::Shipping::UPS.new(
+                    :login    => 'CHANGEME',
+                    :password => 'CHANGEME',
+                    :key      => 'CHANGEME')
+            @active_shipping[[o,d,p]] = ups.find_rates(o, d, p)
+          end
+
+          rate = @active_shipping[[o,d,p]].rates.find { |rate|
+            rate.service_name == "UPS #{name}"
+          }
+          rate ? rate.price.to_f / 100.0 : nil
+        end
+
+        def origin(shipping_options)
+          opts = { :country     => shipping_options[:sender_country],
+                   :state       => shipping_options[:sender_state],
+                   :city        => shipping_options[:sender_city],
+                   :postal_code => shipping_options[:sender_zip]}
+          @origin ||= {}
+          unless @origin[opts]
+            @origin[opts] = ActiveMerchant::Shipping::Location.new(opts)
+          end
+          @origin[opts]
+        end
+
+        def destination(shipping_options)
+          opts = { :country => shipping_options[:country],
+                   :postal_code => shipping_options[:zip] }
+          @destination ||= {}
+          unless @destination[opts]
+            @destination[opts] = ActiveMerchant::Shipping::Location.new(opts)
+          end
+          @destination[opts]
+        end
+
+        def package(shipping_options)
+          opts = [shipping_options[:weight].to_f * 16, [0,0,0], {:units => :imperial}]
+          @package ||= {}
+          unless @package[opts]
+            @package[opts] = ActiveMerchant::Shipping::Package.new(*opts)
+          end
+          @package[opts]
+        end
       end
     end
   end
