@@ -21,7 +21,7 @@ Feature:
         | Shipury::Fedex::Rate    | 12300  |
         | Shipury::UPS::Rate      | 9840   |
         | Shipury::USPS::Zone     | 139137 |
-        | Shipury::Fedex::Zone    | 243738 |
+        | Shipury::Fedex::Zone    | 243740 |
         | Shipury::UPS::Zone      | 633228 |
 
 

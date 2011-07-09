@@ -40,7 +40,7 @@ module Shipury
                                     with(400..599, "142")
             Zone::NextDayAirAM    . should_receive(:create_from_hawaii).
                                     with(400..599, "142")
-            Shipury::UPS::Zone.download_tables(StringIO.new, 967, 968)
+            Shipury::UPS::Zone.download_tables(::StringIO.new, 967, 968)
           end
         end
       end
