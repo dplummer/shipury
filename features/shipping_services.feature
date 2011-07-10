@@ -155,3 +155,32 @@ Feature:
       | UPS     | Worldwide Expedited                              | 62.86 |
       | UPS     | Saver                                            | 64.34 |
       | UPS     | Express                                          | 66.87 |
+
+  Scenario Outline: From Toronto to Seattle
+    Given I am shopping for a quote for the following shipping options:
+        | country        | US      |
+        | zip            | 98125   |
+        | sender_zip     | M1E 2S8 |
+        | sender_city    | Toronto |
+        | sender_state   | ON      |
+        | sender_country | CA      |
+        | weight         | 1.0     |
+        | line_items     | 1       |
+     When I shop for a rate from carrier "<carrier>" service "<service>"
+     Then the quoted price should be "<price>"
+
+    Examples:
+      | carrier | service                                          | price |
+      | USPS    | First-Class Mail International Package           | 5.58  |
+      | USPS    | Priority Mail International Small Flat Rate Box  | 11.95 |
+      | USPS    | Priority Mail International                      | 21.25 |
+      | USPS    | Priority Mail International Medium Flat Rate Box | 27.95 |
+      | USPS    | Express Mail International                       | 32.50 |
+      | USPS    | Priority Mail International Large Flat Rate Box  | 35.50 |
+      | Fedex   | Ground                                           | 14.34 |
+      | Fedex   | International Economy                            | 19.46 |
+      | Fedex   | International Priority                           | 19.80 |
+      | UPS     | Standard                                         | 17.52 |
+      | UPS     | Worldwide Expedited                              | 62.86 |
+      | UPS     | Saver                                            | 64.34 |
+      | UPS     | Express                                          | 66.87 |

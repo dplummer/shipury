@@ -15,6 +15,27 @@ module Shipury
                     "Priority Mail Large Flat Rate Box"  => "Large Flat Rate Box",
                     "Priority Mail APO Flat Rate Box"    => "APO/FPO/DPO Large FRB"}
 
+      class << self
+        def active_shipping_quote(name, shipping_options)
+          @active_shipping ||= {}
+          o = origin(shipping_options)
+          d = destination(shipping_options)
+          p = package(shipping_options)
+          unless @active_shipping[[o,d,p]]
+            # TODO: Config file for logins
+            usps = ActiveMerchant::Shipping::USPS.new(
+                    :login    => 'CHANGEME',
+                    :password => 'CHANGEME')
+            @active_shipping[[o,d,p]] = usps.find_rates(o, d, p)
+          end
+
+          rate = @active_shipping[[o,d,p]].rates.find { |rate|
+            rate.service_name == "USPS #{name}"
+          }
+          rate ? rate.price.to_f / 100.0 : nil
+        end
+      end
+
       def parse_csv(csv_content)
         require 'fastercsv'
         csv = FasterCSV.new(csv_content, :headers => true, :skip_blanks => true)

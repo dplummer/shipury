@@ -15,6 +15,39 @@ module Shipury
       :order => "shipury_carriers.name, shipury_services.name"
     }
 
+    class << self
+      def origin(shipping_options)
+        opts = { :country     => shipping_options[:sender_country],
+                 :state       => shipping_options[:sender_state],
+                 :city        => shipping_options[:sender_city],
+                 :postal_code => shipping_options[:sender_zip]}
+        @origin ||= {}
+        unless @origin[opts]
+          @origin[opts] = ActiveMerchant::Shipping::Location.new(opts)
+        end
+        @origin[opts]
+      end
+
+      def destination(shipping_options)
+        opts = { :country => shipping_options[:country],
+                 :postal_code => shipping_options[:zip] }
+        @destination ||= {}
+        unless @destination[opts]
+          @destination[opts] = ActiveMerchant::Shipping::Location.new(opts)
+        end
+        @destination[opts]
+      end
+
+      def package(shipping_options)
+        opts = [shipping_options[:weight].to_f * 16, [0,0,0], {:units => :imperial}]
+        @package ||= {}
+        unless @package[opts]
+          @package[opts] = ActiveMerchant::Shipping::Package.new(*opts)
+        end
+        @package[opts]
+      end
+    end
+
     def select_label
       "#{carrier_name} -- #{name}"
     end

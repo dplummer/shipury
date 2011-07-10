@@ -19,6 +19,29 @@ module Shipury
 
       validates_inclusion_of :name, :in => RATE_TXT_FILES.keys
 
+      class << self
+        def active_shipping_quote(name, shipping_options)
+          @active_shipping ||= {}
+          o = origin(shipping_options)
+          d = destination(shipping_options)
+          p = package(shipping_options)
+          unless @active_shipping[[o,d,p]]
+            # TODO: Config file for logins
+            Fedex = ActiveMerchant::Shipping::FedEx.new(
+                    :login    => 'meter number',
+                    :password => 'CHANGEME',
+                    :key      => 'CHANGEME',
+                    :account  => 'account number')
+            @active_shipping[[o,d,p]] = fedex.find_rates(o, d, p)
+          end
+
+          rate = @active_shipping[[o,d,p]].rates.find { |rate|
+            rate.service_name == "FedEx #{name}"
+          }
+          rate ? rate.price.to_f / 100.0 : nil
+        end
+      end
+
       def download_rates!
         require 'net/ftp'
         require 'fastercsv'
