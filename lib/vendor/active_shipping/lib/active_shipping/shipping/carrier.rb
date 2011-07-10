@@ -42,6 +42,29 @@ module ActiveMerchant
       def maximum_weight
         Mass.new(150, :pounds)
       end
+
+      def ssl_request(method, endpoint, data, headers)
+        handle_response(raw_ssl_request(method, endpoint, data, headers))
+      end
+
+      def raw_ssl_request(method, endpoint, data, headers = {})
+        connection = Connection.new(endpoint)
+        connection.open_timeout = open_timeout
+        connection.read_timeout = read_timeout
+        connection.retry_safe   = retry_safe
+        connection.verify_peer  = ssl_strict
+        connection.logger       = logger
+        connection.tag          = self.class.name
+        connection.wiredump_device = wiredump_device
+        
+        connection.pem          = @options[:pem] if @options
+        connection.pem_password = @options[:pem_password] if @options
+
+        connection.ignore_http_status = @options[:ignore_http_status] if @options
+        
+        connection.request(method, data, headers)
+      end
+
       
       protected
       
@@ -64,6 +87,17 @@ module ActiveMerchant
       # Use after building the request to save for later inspection. Probably won't ever be overridden.
       def save_request(r)
         @last_request = r
+      end
+
+    private
+
+      def handle_response(response)
+        case response.code.to_i
+        when 200...300
+          response.body
+        else
+          raise ResponseError.new(response)
+        end
       end
     end
   end
