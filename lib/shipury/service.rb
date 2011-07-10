@@ -16,6 +16,32 @@ module Shipury
     }
 
     class << self
+      attr_reader :config
+
+      def load_config(carrier_name)
+        @config = symbolize_keys(YAML.load(File.read('shipury_config.yml'))[carrier_name])
+      end
+
+      # For ActiveShipping international/hawaii support
+      # Returns nil if no price available
+      def active_shipping_quote(service_name, shipping_options)
+        @active_shipping ||= {}
+        o = origin(shipping_options)
+        d = destination(shipping_options)
+        p = package(shipping_options)
+        unless @active_shipping[[o,d,p]]
+          response = "ActiveMerchant::Shipping::#{config[:label]}".constantize.
+            new(config[:config])
+          @active_shipping[[o,d,p]] = response.find_rates(o, d, p)
+        end
+
+        rate = @active_shipping[[o,d,p]].rates.find { |rate|
+          rate.service_name == "#{config[:label]} #{service_name}"
+        }
+        rate ? rate.price.to_f / 100.0 : nil
+      end
+
+      # For ActiveShipping international/hawaii support
       def origin(shipping_options)
         opts = { :country     => shipping_options[:sender_country],
                  :state       => shipping_options[:sender_state],
@@ -28,6 +54,7 @@ module Shipury
         @origin[opts]
       end
 
+      # For ActiveShipping international/hawaii support
       def destination(shipping_options)
         opts = { :country => shipping_options[:country],
                  :postal_code => shipping_options[:zip] }
@@ -38,6 +65,7 @@ module Shipury
         @destination[opts]
       end
 
+      # For ActiveShipping international/hawaii support
       def package(shipping_options)
         opts = [shipping_options[:weight].to_f * 16, [0,0,0], {:units => :imperial}]
         @package ||= {}
@@ -45,6 +73,19 @@ module Shipury
           @package[opts] = ActiveMerchant::Shipping::Package.new(*opts)
         end
         @package[opts]
+      end
+
+      private
+
+      def symbolize_keys(h)
+        h.keys.inject({}) do |acc, k|
+          if h[k].is_a? Hash
+            acc[k.to_sym] = symbolize_keys(h[k])
+          else
+            acc[k.to_sym] = h[k]
+          end
+          acc
+        end
       end
     end
 
@@ -57,10 +98,18 @@ module Shipury
     end
 
     def quote(shipping_options)
+      international? ? international_quote(shipping_options) : domestic_quote(shipping_options)
+    end
+
+    def domestic_quote(shipping_options)
       Rate.by_weight(weight_priced? ? shipping_options[:weight] : nil).
            by_zone(zone_priced? ? zone_lookup(shipping_options) : nil).
            by_service(self).
            first(:order => 'price ASC').try(:price)
+    end
+
+    def international_quote(shipping_options)
+      self.class.active_shipping_quote(name, shipping_options)
     end
 
     def update_weight_zone_rate_price(weight, zone, price)

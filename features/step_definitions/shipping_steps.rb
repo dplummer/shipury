@@ -3,8 +3,22 @@ Given "I allow net connect" do
 end
 
 Given "I am accepting requests to UPS for a Hawaii origin" do
- WebMock.stub_request(:post, "https://www.ups.com/ups.app/xml/Rate").
-   to_return(File.new('features/support/ups_hawaii_rates.txt'))
+  WebMock.reset!
+  VCR.use_cassette('hawaii_origin') do
+
+  end
+  WebMock.stub_request(:post, "https://www.ups.com/ups.app/xml/Rate").
+    to_return(File.new('features/support/ups_hawaii_rates.txt'))
+end
+
+Given "I am accepting requests for destination Canada" do
+  WebMock.reset!
+  WebMock.stub_request(:post, "https://www.ups.com/ups.app/xml/Rate").
+    to_return(File.new('features/support/ups_destination_canada.txt'))
+  WebMock.stub_request(:post, "https://gateway.fedex.com/xml").
+    to_return(File.new('features/support/fedex_destination_canada.txt'))
+  #WebMock.stub_request(:post, "http://production.shippingapis.com/ShippingAPI.dll").
+  #  to_return(File.new('features/support/usps_destination_cananda.txt'))
 end
 
 Given "USPS shipping rates are loaded" do

@@ -15,6 +15,7 @@ group :test do
   gem 'rspec',          '1.3.0'
   gem 'rspec-rails',    '1.3.2'
   gem 'webmock',        '1.6.2'
+  gem 'vcr',            '1.10.0'
   gem 'cucumber',       '0.10.7'
   gem 'cucumber-rails', '0.3.2'
   gem 'gherkin',        '2.4.1'

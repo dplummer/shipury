@@ -35,27 +35,13 @@ module Shipury
         "Next Day Air Early A.M." => 1.16
       }
 
-      class << self
-        def active_shipping_quote(name, shipping_options)
-          @active_shipping ||= {}
-          o = origin(shipping_options)
-          d = destination(shipping_options)
-          p = package(shipping_options)
-          unless @active_shipping[[o,d,p]]
-            # TODO: Config file for logins
-            ups = ActiveMerchant::Shipping::UPS.new(
-                    :login    => 'CHANGEME',
-                    :password => 'CHANGEME',
-                    :key      => 'CHANGEME')
-            @active_shipping[[o,d,p]] = ups.find_rates(o, d, p)
-          end
+      INTERNATIONAL_SERVICES = ['Standard',
+                                'Worldwide Expedited',
+                                'Saver',
+                                'Express']
 
-          rate = @active_shipping[[o,d,p]].rates.find { |rate|
-            rate.service_name == "UPS #{name}"
-          }
-          rate ? rate.price.to_f / 100.0 : nil
-        end
-      end
+
+      load_config 'ups'
 
       def parse_worksheet!(worksheet)
         zone_headings = []
@@ -84,7 +70,7 @@ module Shipury
                                         shipping_options[:zip])
       end
 
-      def quote(shipping_options)
+      def domestic_quote(shipping_options)
         if shipping_options[:sender_state] == 'HI'
           international_quote(shipping_options)
         else
@@ -92,10 +78,6 @@ module Shipury
           price = (price * SERVICE_FUEL_SURCHARGE[name]).round(2) unless price.nil?
           price
         end
-      end
-
-      def international_quote(shipping_options)
-        Shipury::UPS::Service.active_shipping_quote(name, shipping_options)
       end
     end
   end

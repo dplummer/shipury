@@ -24,7 +24,7 @@ module Shipury
 
               delete_all_for_source(source_lower, source_upper)
 
-              FasterCSV.new(continental_us.join("\n")).each do |row|
+              ::FasterCSV.new(continental_us.join("\n")).each do |row|
                 unless row[0].blank? || row[1] == 'NA'
                   Express.create_from_row(source_lower, source_upper, row[0], row[1])
                   Ground.create_from_row(source_lower, source_upper, row[0], row[1])
@@ -33,7 +33,7 @@ module Shipury
                 output_io.flush
               end
 
-              FasterCSV.new(outer_us.join("\n")).each do |row|
+              ::FasterCSV.new(outer_us.join("\n")).each do |row|
                 unless row[0].blank?
                   unless row[1] == 'NA'
                     Express.create_from_row(source_lower, source_upper, row[0], row[1])

@@ -15,26 +15,15 @@ module Shipury
                     "Priority Mail Large Flat Rate Box"  => "Large Flat Rate Box",
                     "Priority Mail APO Flat Rate Box"    => "APO/FPO/DPO Large FRB"}
 
-      class << self
-        def active_shipping_quote(name, shipping_options)
-          @active_shipping ||= {}
-          o = origin(shipping_options)
-          d = destination(shipping_options)
-          p = package(shipping_options)
-          unless @active_shipping[[o,d,p]]
-            # TODO: Config file for logins
-            usps = ActiveMerchant::Shipping::USPS.new(
-                    :login    => 'CHANGEME',
-                    :password => 'CHANGEME')
-            @active_shipping[[o,d,p]] = usps.find_rates(o, d, p)
-          end
+      INTERNATIONAL_SERVICES = ['First-Class Mail International Package',
+                                'Priority Mail International',
+                                'Priority Mail International Small Flat Rate Box',
+                                'Priority Mail International Medium Flat Rate Box',
+                                'Priority Mail International Large Flat Rate Box',
+                                'Express Mail International']
 
-          rate = @active_shipping[[o,d,p]].rates.find { |rate|
-            rate.service_name == "USPS #{name}"
-          }
-          rate ? rate.price.to_f / 100.0 : nil
-        end
-      end
+
+      load_config 'usps'
 
       def parse_csv(csv_content)
         require 'fastercsv'
@@ -102,6 +91,11 @@ module Shipury
       def zone_lookup(shipping_options)
         Shipury::USPS::Zone.zone_lookup(shipping_options[:sender_zip],
                                          shipping_options[:zip])
+      end
+
+      def international_quote(shipping_options)
+        return nil if shipping_options['sender_country'] != 'US'
+        super
       end
 
       private

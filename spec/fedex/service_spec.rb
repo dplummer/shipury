@@ -127,6 +127,21 @@ TXT_CONTENT
           end
         end
       end
+
+      describe "load_config" do
+        subject { Shipury::Fedex::Service }
+        describe "default configs" do
+          it "loads the label" do
+            subject.config[:label].should == 'FedEx'
+          end
+
+          it "loads the ActiveShipping config" do
+            Set.new(subject.config[:config].keys).
+              should == Set.new([:account, :key, :login, :password])
+          end
+        end
+      end
+
     end
   end
 end

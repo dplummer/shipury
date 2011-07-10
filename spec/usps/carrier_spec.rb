@@ -4,7 +4,7 @@ module Shipury
   module USPS
     describe Carrier do
       context ".download_pricing" do
-        subject { Carrier }
+        subject { Shipury::USPS::Carrier }
         let(:service) { mock("Shipping::USPS::Service").as_null_object }
         let(:base_dir) { 'spec/shipping_fixtures' }
         let(:service_names) do
@@ -29,8 +29,10 @@ module Shipury
               to_return do |request|
             File.new(File.join(base_dir, request.uri.to_s.split('/').last))
           end
+
           @carrier = Carrier.find_or_create_by_name("USPS")
-          Carrier.stub(:first).and_return(@carrier)
+          @carrier.stub(:setup_international_services)
+          Carrier.stub(:find_or_create_by_name).and_return(@carrier)
           Service.stub(:find_or_initialize_by_name).and_return(service)
         end
 

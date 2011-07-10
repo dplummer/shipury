@@ -74,9 +74,12 @@ module Shipury
             output_io.puts "Error fetching UPS #{service_name}: #{e.message}"
           end
         end
+
+        setup_international_services
       end
 
       private
+
       def service_parse(service_name, worksheet)
         service = Shipury::UPS::Service.find_or_initialize_by_name(service_name)
         service.carrier = self

@@ -7,5 +7,15 @@ module Shipury
     set_table_name 'shipury_carriers'
 
     validates_uniqueness_of :name
+
+    private
+
+      def setup_international_services
+        Service::INTERNATIONAL_SERVICES.each do |service_name|
+          Service.create!(:name          => service_name,
+                          :international => true,
+                          :carrier       => self)
+        end
+      end
   end
 end

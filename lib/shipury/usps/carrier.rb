@@ -57,6 +57,8 @@ module Shipury
             output_io.puts "Error fetching csv for #{name}: #{e.message}"
           end
         end
+
+        setup_international_services
       end
 
       private

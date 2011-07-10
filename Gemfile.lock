@@ -45,6 +45,7 @@ GEM
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
     term-ansicolor (1.0.5)
+    vcr (1.10.0)
     webmock (1.6.2)
       addressable (>= 2.2.2)
       crack (>= 0.1.7)
@@ -68,4 +69,5 @@ DEPENDENCIES
   rubyzip (= 0.9.4)
   spreadsheet (= 0.6.5.4)
   sqlite3-ruby (= 1.3.3)
+  vcr (= 1.10.0)
   webmock (= 1.6.2)

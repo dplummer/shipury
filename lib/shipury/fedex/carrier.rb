@@ -21,6 +21,8 @@ module Shipury
             output_io.puts "Error fetching Fedex #{service_name}: #{e.message}"
           end
         end
+
+        setup_international_services
       end
 
       private

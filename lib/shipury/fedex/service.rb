@@ -10,6 +10,9 @@ module Shipury
         "Standard Overnight"     => "SO.txt"
       }
 
+      INTERNATIONAL_SERVICES = ['International Economy',
+                                'International Priority']
+
       belongs_to :carrier, :conditions => {:type => "Shipury::Fedex::Carrier"},
                            :class_name => "Shipury::Fedex::Carrier"
 
@@ -17,30 +20,9 @@ module Shipury
                        :class_name => "Shipury::Fedex::Rate",
                        :dependent  => :destroy
 
-      validates_inclusion_of :name, :in => RATE_TXT_FILES.keys
+      validates_inclusion_of :name, :in => RATE_TXT_FILES.keys + INTERNATIONAL_SERVICES
 
-      class << self
-        def active_shipping_quote(name, shipping_options)
-          @active_shipping ||= {}
-          o = origin(shipping_options)
-          d = destination(shipping_options)
-          p = package(shipping_options)
-          unless @active_shipping[[o,d,p]]
-            # TODO: Config file for logins
-            Fedex = ActiveMerchant::Shipping::FedEx.new(
-                    :login    => 'meter number',
-                    :password => 'CHANGEME',
-                    :key      => 'CHANGEME',
-                    :account  => 'account number')
-            @active_shipping[[o,d,p]] = fedex.find_rates(o, d, p)
-          end
-
-          rate = @active_shipping[[o,d,p]].rates.find { |rate|
-            rate.service_name == "FedEx #{name}"
-          }
-          rate ? rate.price.to_f / 100.0 : nil
-        end
-      end
+      load_config 'fedex'
 
       def download_rates!
         require 'net/ftp'
@@ -127,6 +109,15 @@ module Shipury
         yield ftp
       ensure
         ftp.close if ftp
+      end
+
+      def domestic_quote(shipping_options)
+        if name == 'Ground' && (shipping_options['country'] != 'US' ||
+                                shipping_options['sender_country'] != 'US')
+          international_quote(shipping_options)
+        else
+          super
+        end
       end
     end
   end

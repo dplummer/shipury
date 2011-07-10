@@ -5,6 +5,7 @@ module Shipury
 
       class << self
         def download_tables(output_io = StringIO.new, start_zip = 5, finish_zip = 999)
+          require 'mechanize'
           (start_zip..finish_zip).each do |zip|
             zip_page = page(zip)
             transaction do
@@ -43,7 +44,7 @@ module Shipury
         end
 
         def agent
-          @agent ||= Mechanize.new
+          @agent ||= ::Mechanize.new
         end
 
         def page(zip)

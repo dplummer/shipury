@@ -10,8 +10,9 @@ module Shipury
         end
 
         it "creates the correct number of records" do
-          Shipury::USPS::Zone.download_tables(::StringIO.new, 5, 5)
-          Shipury::USPS::Zone.count(:conditions => {:source_zip_gte => 500}).should == 168
+          Shipury::USPS::Zone.download_tables(StringIO.new, 5, 5)
+          Shipury::USPS::Zone.count(:conditions => {:source_zip_gte => 500}).
+            should == 168
         end
       end
     end

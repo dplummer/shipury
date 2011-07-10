@@ -101,6 +101,19 @@ CSV_CONTENT
           end
         end
       end
+
+      describe "load configs" do
+        subject { Shipury::USPS::Service }
+        describe "default configs" do
+          it "loads the label" do
+            subject.config[:label].should == 'USPS'
+          end
+
+          it "loads the ActiveShipping config" do
+            Set.new(subject.config[:config].keys).should == Set.new([:login, :password])
+          end
+        end
+      end
     end
   end
 end

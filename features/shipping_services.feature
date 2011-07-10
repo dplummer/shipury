@@ -85,9 +85,9 @@ Feature:
       | UPS     | Next Day Air                       | 77.95  |
       | UPS     | Next Day Air Early A.M.            | 106.95 |
 
+  @origin_hawaii
   Scenario Outline: From Hawaii to California
-    Given I am accepting requests to UPS for a Hawaii origin
-      And I am shopping for a quote for the following shipping options:
+    Given I am shopping for a quote for the following shipping options:
         | country        | US       |
         | zip            | 90045    |
         | sender_zip     | 96817    |
@@ -127,6 +127,7 @@ Feature:
       | UPS     | Next Day Air                       | 50.32 |
       | UPS     | Next Day Air Early A.M.            | 85.82 |
 
+  @destination_canada
   Scenario Outline: From California to Ontario, CA
     Given I am shopping for a quote for the following shipping options:
         | country        | CA       |
@@ -156,6 +157,7 @@ Feature:
       | UPS     | Saver                                            | 64.34 |
       | UPS     | Express                                          | 66.87 |
 
+  @origin_canada
   Scenario Outline: From Toronto to Seattle
     Given I am shopping for a quote for the following shipping options:
         | country        | US      |
@@ -171,16 +173,16 @@ Feature:
 
     Examples:
       | carrier | service                                          | price |
-      | USPS    | First-Class Mail International Package           | 5.58  |
-      | USPS    | Priority Mail International Small Flat Rate Box  | 11.95 |
-      | USPS    | Priority Mail International                      | 21.25 |
-      | USPS    | Priority Mail International Medium Flat Rate Box | 27.95 |
-      | USPS    | Express Mail International                       | 32.50 |
-      | USPS    | Priority Mail International Large Flat Rate Box  | 35.50 |
-      | Fedex   | Ground                                           | 14.34 |
-      | Fedex   | International Economy                            | 19.46 |
-      | Fedex   | International Priority                           | 19.80 |
-      | UPS     | Standard                                         | 17.52 |
-      | UPS     | Worldwide Expedited                              | 62.86 |
-      | UPS     | Saver                                            | 64.34 |
-      | UPS     | Express                                          | 66.87 |
+      | USPS    | First-Class Mail International Package           |       |
+      | USPS    | Priority Mail International Small Flat Rate Box  |       |
+      | USPS    | Priority Mail International                      |       |
+      | USPS    | Priority Mail International Medium Flat Rate Box |       |
+      | USPS    | Express Mail International                       |       |
+      | USPS    | Priority Mail International Large Flat Rate Box  |       |
+      | Fedex   | Ground                                           | 17.03 |
+      | Fedex   | International Economy                            | 37.54 |
+      | Fedex   | International Priority                           | 47.86 |
+      | UPS     | Standard                                         | 27.40 |
+      | UPS     | Worldwide Expedited                              | 63.39 |
+      | UPS     | Saver                                            | 73.13 |
+      | UPS     | Express                                          | 76.93 |

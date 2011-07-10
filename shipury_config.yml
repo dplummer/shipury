@@ -1,0 +1,18 @@
+usps:
+  label: USPS
+  config:
+    login:    login
+    password: password
+ups:
+  label: UPS
+  config:
+    login:    login
+    password: password
+    key:      key
+fedex:
+  label: FedEx
+  config:
+    login:    login
+    password: password
+    key:      key
+    account:  account number
