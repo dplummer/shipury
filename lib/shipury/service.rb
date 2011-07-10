@@ -19,7 +19,12 @@ module Shipury
       attr_reader :config
 
       def load_config(carrier_name)
-        @config = symbolize_keys(YAML.load(File.read('shipury_config.yml'))[carrier_name])
+        if defined?(Rails)
+          file = "#{Rails.root}/config/shipury_config.yml"
+        else
+          file = 'shipury_config.yml'
+        end
+        @config = symbolize_keys(YAML.load(File.read(file))[carrier_name])
       end
 
       # For ActiveShipping international/hawaii support
