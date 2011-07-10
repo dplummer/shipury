@@ -107,6 +107,8 @@ module Shipury
     end
 
     def domestic_quote(shipping_options)
+      return nil unless shipping_options[:country] == 'US' &&
+                        shipping_options[:sender_country] == 'US'
       Rate.by_weight(weight_priced? ? shipping_options[:weight] : nil).
            by_zone(zone_priced? ? zone_lookup(shipping_options) : nil).
            by_service(self).
@@ -114,6 +116,8 @@ module Shipury
     end
 
     def international_quote(shipping_options)
+      return nil unless shipping_options[:country] != 'US' ||
+                        shipping_options[:sender_country] != 'US'
       self.class.active_shipping_quote(name, shipping_options)
     end
 

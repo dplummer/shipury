@@ -112,8 +112,8 @@ module Shipury
       end
 
       def domestic_quote(shipping_options)
-        if name == 'Ground' && (shipping_options['country'] != 'US' ||
-                                shipping_options['sender_country'] != 'US')
+        if name == 'Ground' && (shipping_options[:country] != 'US' ||
+                                shipping_options[:sender_country] != 'US')
           international_quote(shipping_options)
         else
           super
