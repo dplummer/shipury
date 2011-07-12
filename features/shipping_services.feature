@@ -186,3 +186,44 @@ Feature:
       | UPS     | Worldwide Expedited                              | 63.39 |
       | UPS     | Saver                                            | 73.13 |
       | UPS     | Express                                          | 76.93 |
+
+  Scenario Outline: From California to APO
+    Given I am shopping for a quote for the following shipping options:
+        | country        | US       |
+        | zip            | 96326    |
+        | sender_zip     | 95112    |
+        | sender_city    | San Jose |
+        | sender_state   | CA       |
+        | sender_country | US       |
+        | weight         | 0.1      |
+        | line_items     | 11       |
+     When I shop for a rate from carrier "<carrier>" service "<service>"
+     Then the quoted price should be "<price>"
+
+    Examples:
+      | carrier | service                            | price  |
+      | USPS    | Priority Mail Retail               | 5.10   |
+      | USPS    | Priority Mail Flat Rate Envelope   | 4.95   |
+      | USPS    | Priority Mail Small Flat Rate Box  | 5.20   |
+      | USPS    | Priority Mail Medium Flat Rate Box | 10.95  |
+      | USPS    | Priority Mail Large Flat Rate Box  | 14.95  |
+      | USPS    | Priority Mail APO Flat Rate Box    | 12.95  |
+      | USPS    | Express Mail Retail                | 15.25  |
+      | USPS    | Express Mail Flat Rate Envelope    | 18.30  |
+      | USPS    | First-Class Mail Flat              | 1.08   |
+      | USPS    | First-Class Mail Letter            | 0.64   |
+      | USPS    | First-Class Mail Parcel            | 1.71   |
+      | USPS    | Parcel Post                        | 5.10   |
+      | Fedex   | Ground                             | 5.17   |
+      | Fedex   | 2-Day                              | 11.35  |
+      | Fedex   | Express Saver                      | 10.50  |
+      | Fedex   | Overnight                          | 46.30  |
+      | Fedex   | Priority Overnight                 | 21.30  |
+      | Fedex   | Standard Overnight                 | 17.75  |
+      | UPS     | Ground                             |        |
+      | UPS     | Three-Day Select                   |        |
+      | UPS     | Second Day Air                     |        |
+      | UPS     | Second Day Air A.M.                |        |
+      | UPS     | Next Day Air Saver                 |        |
+      | UPS     | Next Day Air                       |        |
+      | UPS     | Next Day Air Early A.M.            |        |

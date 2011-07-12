@@ -71,8 +71,9 @@ module Shipury
       end
 
       def domestic_quote(shipping_options)
+        return nil if apo_zip?(shipping_options[:zip])
         if shipping_options[:sender_state] == 'HI'
-          international_quote(shipping_options)
+          self.class.active_shipping_quote(name, shipping_options)
         else
           price = super
           price = (price * SERVICE_FUEL_SURCHARGE[name]).round(2) unless price.nil?

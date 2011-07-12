@@ -157,5 +157,10 @@ module Shipury
     def oz_to_lb(oz)
       oz.to_f * 0.0625
     end
+
+    def apo_zip?(zip)
+      %w(090 091 092 093 094 095 096 097 098 962 963 964 965 340).
+        include?(zip.to_s[0..2])
+    end
   end
 end
